@@ -45,23 +45,12 @@ export function Hero() {
             </StaggerItem>
             <StaggerItem duration={0.36} y={10}>
               <Link
-                href="/#contact"
-                className={cn(
-                  ctaBase,
-                  "transform-gpu border border-border-strong bg-surface text-text-primary hover:-translate-y-0.5 hover:border-text-secondary/45",
-                )}
-              >
-                Contact
-              </Link>
-            </StaggerItem>
-            <StaggerItem duration={0.36} y={10}>
-              <Link
                 href={profile.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
                   ctaBase,
-                  "transform-gpu text-text-secondary hover:-translate-y-0.5 hover:bg-white/5 hover:text-text-primary",
+                  "transform-gpu border border-border-strong bg-surface text-text-primary hover:-translate-y-0.5 hover:border-text-secondary/45",
                 )}
               >
                 Download Resume
