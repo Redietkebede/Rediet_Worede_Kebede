@@ -1,6 +1,6 @@
 import { projects } from "@/app/data/portfolio";
 import { Section } from "@/components/ui";
-import { Feature108 } from "@/components/ui/shadcnblocks-com-feature108";
+import { Feature108 } from "@/components/ui/shadcnblocks-com-feature";
 
 const previewImages = [
   "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1600&q=80",
