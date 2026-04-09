@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import { Brain, Code2, Dumbbell, GraduationCap, Layout, LineChart, Pointer, Zap } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -99,17 +99,51 @@ function getTabIcon(
 }
 
 function PreviewPane({ content }: { content: TabContent }) {
+  const DESKTOP_W = 1366;
+  const DESKTOP_H = 768;
+  const frameRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const frame = frameRef.current;
+    if (!frame) return;
+
+    const updateScale = () => {
+      const rect = frame.getBoundingClientRect();
+      const next = Math.min(rect.width / DESKTOP_W, rect.height / DESKTOP_H);
+      setScale(Number.isFinite(next) && next > 0 ? next : 1);
+    };
+
+    const observer = new ResizeObserver(updateScale);
+    observer.observe(frame);
+    updateScale();
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div>
-      <div className="relative min-h-[330px] overflow-hidden rounded-xl border border-border-soft bg-black lg:min-h-[460px]">
+      <div
+        ref={frameRef}
+        className="relative aspect-[1366/768] w-full overflow-hidden rounded-xl border border-border-soft bg-surface/20"
+      >
         {content.previewUrl ? (
-          <iframe
-            src={content.previewUrl}
-            title={`${content.title} preview`}
-            loading="lazy"
-            className="absolute inset-0 h-full w-full"
-            referrerPolicy="strict-origin-when-cross-origin"
-          />
+          <div
+            className="absolute left-1/2 top-1/2 origin-center"
+            style={{
+              width: `${DESKTOP_W}px`,
+              height: `${DESKTOP_H}px`,
+              transform: `translate(-50%, -50%) scale(${scale})`,
+            }}
+          >
+            <iframe
+              src={content.previewUrl}
+              title={`${content.title} preview`}
+              loading="lazy"
+              className="h-full w-full"
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
+          </div>
         ) : (
           <div
             role="img"

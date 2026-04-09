@@ -34,6 +34,7 @@ export function Projects() {
       id="projects"
       eyebrow="Projects"
       title="Featured Work"
+      lazyMinHeight={460}
       className="border-y border-border-soft bg-surface/45"
     >
       <Feature108 tabs={tabs} />

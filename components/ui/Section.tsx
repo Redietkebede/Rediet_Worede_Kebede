@@ -1,5 +1,6 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { Container } from "@/components/ui/Container";
+import { LazyMount } from "@/components/ui/LazyMount";
 import { Reveal } from "@/components/ui/Reveal";
 import { Heading, Text } from "@/components/ui/Typography";
 import { cn } from "@/lib/utils";
@@ -9,6 +10,9 @@ export interface SectionProps extends ComponentPropsWithoutRef<"section"> {
   title?: string;
   description?: string;
   children: ReactNode;
+  lazyChildren?: boolean;
+  lazyThreshold?: number;
+  lazyMinHeight?: number;
 }
 
 export function Section({
@@ -16,6 +20,9 @@ export function Section({
   title,
   description,
   children,
+  lazyChildren = true,
+  lazyThreshold = 0.5,
+  lazyMinHeight = 260,
   className,
   ...props
 }: SectionProps) {
@@ -45,7 +52,13 @@ export function Section({
             </header>
           </Reveal>
         )}
-        {children}
+        {lazyChildren ? (
+          <LazyMount threshold={lazyThreshold} minHeight={lazyMinHeight}>
+            {children}
+          </LazyMount>
+        ) : (
+          children
+        )}
       </Container>
     </section>
   );

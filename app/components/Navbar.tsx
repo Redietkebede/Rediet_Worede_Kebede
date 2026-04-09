@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
-import { Button, HoverGlowButton } from "@/components/ui";
+import { Button, HoverGlowButton, StarButton } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -77,13 +77,21 @@ export function Navbar() {
     <header className="fixed inset-x-0 top-4 z-50 px-3 sm:px-6">
       <div className="w-full rounded-full border border-border-strong bg-background/65 px-3 py-2.5 backdrop-blur-xl sm:px-5">
         <div className="flex items-center justify-between gap-3 sm:gap-6">
-          <Link
-            href="/#hero"
-            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border-strong bg-surface/80 text-[10px] font-semibold tracking-[0.16em] text-text-primary uppercase transition hover:border-accent hover:text-accent"
+          <StarButton
+            onClick={() => {
+              setOpen(false);
+              router.push("/#hero");
+            }}
             aria-label="Go to hero"
+            duration={2.8}
+            lightWidth={72}
+            lightColor="rgba(229, 9, 20, 0.85)"
+            backgroundColor="rgba(18, 18, 18, 0.95)"
+            borderWidth={1}
+            className="h-9 shrink-0 rounded-full px-3 text-[12px] font-semibold tracking-[0.16em] uppercase"
           >
             RWK
-          </Link>
+          </StarButton>
 
           <nav className="hidden items-center gap-6 md:flex lg:gap-8">
             {navItems.map((item) => (

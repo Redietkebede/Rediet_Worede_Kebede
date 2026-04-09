@@ -35,3 +35,21 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 # Rediet_Worede_Kebede
+
+## Contact API (Phase 6)
+
+The contact form posts to `POST /api/contact` with server-side validation and email delivery via Resend.
+
+### Environment variables
+
+Create a local `.env.local` file based on `.env.example`:
+
+```bash
+RESEND_API_KEY=your_resend_api_key
+CONTACT_TO_EMAIL=your_inbox@example.com
+CONTACT_FROM_EMAIL="Portfolio Contact <onboarding@resend.dev>"
+```
+
+Notes:
+- In development, if email variables are missing, the API accepts the message but skips delivery.
+- In production, email variables are required for delivery.

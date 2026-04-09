@@ -1,5 +1,5 @@
 import { profile } from "@/app/data/portfolio";
-import { Container, Heading, Lead, Reveal, Stagger, StaggerItem } from "@/components/ui";
+import { AetherFlowHero, Container, Heading, Lead, Reveal, Stagger, StaggerItem } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -10,12 +10,14 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="snap-start snap-always flex min-h-svh items-center pt-16 pb-10 sm:min-h-dvh sm:pt-20 sm:pb-12 md:pt-28 md:pb-16"
+      className="relative isolate snap-start snap-always flex min-h-svh items-center overflow-hidden pt-16 pb-10 sm:min-h-dvh sm:pt-20 sm:pb-12 md:pt-28 md:pb-16"
     >
+      <AetherFlowHero className="absolute inset-0 z-0" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.08),transparent_48%),linear-gradient(to_bottom,rgba(11,11,11,0.2),rgba(11,11,11,0.75))]" />
       <Container>
-        <div className="max-w-4xl pt-2 md:pt-0">
+        <div className="relative z-10 max-w-4xl pt-2 md:pt-0">
           <Reveal duration={0.42} y={14}>
-            <p className="inline-flex max-w-full rounded-full border border-accent/35 bg-accent/10 px-3 py-1 text-[10px] leading-4 font-medium whitespace-normal uppercase tracking-[0.14em] text-accent sm:text-xs sm:tracking-[0.2em]">
+            <p className="inline-flex max-w-full rounded-full border border-accent/35 bg-black/90 px-3 py-1 text-[10px] leading-4 font-medium whitespace-normal uppercase tracking-[0.14em] text-accent sm:text-xs sm:tracking-[0.2em]">
               {profile.headline}
             </p>
           </Reveal>
