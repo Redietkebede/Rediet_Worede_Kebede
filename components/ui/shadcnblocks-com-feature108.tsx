@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import { Brain, Code2, Dumbbell, GraduationCap, Layout, LineChart, Pointer, Zap } from "lucide-react";
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button-shadcn";
 
@@ -103,6 +104,7 @@ function PreviewPane({ content }: { content: TabContent }) {
   const DESKTOP_H = 768;
   const frameRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
+  const [canLoadPreview, setCanLoadPreview] = useState(false);
 
   useEffect(() => {
     const frame = frameRef.current;
@@ -121,6 +123,26 @@ function PreviewPane({ content }: { content: TabContent }) {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const frame = frameRef.current;
+    if (!frame || canLoadPreview || !content.previewUrl) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+        if (entry.intersectionRatio >= 0.35 || entry.isIntersecting) {
+          setCanLoadPreview(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: [0, 0.35, 1] },
+    );
+
+    observer.observe(frame);
+    return () => observer.disconnect();
+  }, [canLoadPreview, content.previewUrl]);
+
   return (
     <div>
       <div
@@ -136,20 +158,37 @@ function PreviewPane({ content }: { content: TabContent }) {
               transform: `translate(-50%, -50%) scale(${scale})`,
             }}
           >
-            <iframe
-              src={content.previewUrl}
-              title={`${content.title} preview`}
-              loading="lazy"
-              className="h-full w-full"
-              referrerPolicy="strict-origin-when-cross-origin"
-            />
+            {canLoadPreview ? (
+              <iframe
+                src={content.previewUrl}
+                title={`${content.title} preview`}
+                loading="lazy"
+                className="h-full w-full"
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
+            ) : (
+              <div className="relative h-full w-full">
+                <Image
+                  src={content.imageSrc}
+                  alt={content.imageAlt}
+                  fill
+                  sizes="(min-width: 1024px) 58vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-background/35" />
+                <p className="absolute bottom-4 left-4 rounded-md border border-border-strong bg-background/80 px-2 py-1 text-xs text-text-secondary">
+                  Loading preview...
+                </p>
+              </div>
+            )}
           </div>
         ) : (
-          <div
-            role="img"
-            aria-label={content.imageAlt}
-            className="h-full w-full bg-cover bg-center"
-            style={{ backgroundImage: `url(${content.imageSrc})` }}
+          <Image
+            src={content.imageSrc}
+            alt={content.imageAlt}
+            fill
+            sizes="(min-width: 1024px) 58vw, 100vw"
+            className="object-cover"
           />
         )}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />

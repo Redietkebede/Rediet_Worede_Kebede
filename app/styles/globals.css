@@ -19,7 +19,7 @@
   --color-border-strong: var(--border-strong);
   --color-border-soft: var(--border-soft);
   --animate-star-btn: star-btn calc(var(--duration) * 1s) linear infinite;
-  --font-sans: var(--font-geist-sans), "Manrope", "Segoe UI", sans-serif;
+  --font-sans: "Times New Roman", Times, serif;
   --font-mono: var(--font-geist-mono), "IBM Plex Mono", monospace;
 }
 
