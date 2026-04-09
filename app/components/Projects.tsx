@@ -11,15 +11,11 @@ const previewImages = [
 
 const projectIconKeys = ["exam", "fitness", "learning", "finance"] as const;
 
-function shortenLabel(title: string) {
-  return title.length <= 24 ? title : `${title.slice(0, 21)}...`;
-}
-
 export function Projects() {
   const tabs = projects.map((project, index) => ({
     iconKey: projectIconKeys[Math.min(index, projectIconKeys.length - 1)],
     value: `tab-${index + 1}`,
-    label: shortenLabel(project.title),
+    label: project.title,
     content: {
       badge: `Project ${String(index + 1).padStart(2, "0")}`,
       title: project.title,

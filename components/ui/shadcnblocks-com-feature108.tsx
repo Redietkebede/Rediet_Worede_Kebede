@@ -151,10 +151,21 @@ const Feature108 = ({
             <Tabs.Trigger
               key={tab.value}
               value={tab.value}
-              className="inline-flex items-center gap-2 rounded-xl border border-border-soft bg-background/65 px-4 py-2.5 text-sm font-semibold text-text-secondary transition data-[state=active]:border-border-strong data-[state=active]:bg-surface data-[state=active]:text-text-primary"
+              aria-label={tab.label}
+              className="group inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border-soft bg-background/65 text-sm font-semibold text-text-secondary transition data-[state=active]:border-border-strong data-[state=active]:bg-surface data-[state=active]:text-text-primary sm:h-auto sm:w-auto sm:gap-2 sm:px-4 sm:py-2.5"
             >
-              {getTabIcon(tab, idx)}
-              {tab.label}
+              {getTabIcon(tab, idx, "h-4 w-4 shrink-0")}
+              <span className="relative hidden max-w-[10rem] overflow-hidden whitespace-nowrap sm:inline">
+                <span
+                  className={`inline-block ${
+                    tab.label.length > 22
+                      ? "group-hover:[animation:project-label-marquee_2s_linear_infinite_alternate]"
+                      : ""
+                  }`}
+                >
+                  {tab.label}
+                </span>
+              </span>
             </Tabs.Trigger>
           ))}
         </Tabs.List>
@@ -207,7 +218,9 @@ const Feature108 = ({
 
               </div>
 
-              <PreviewPane content={tab.content} />
+              <div className="hidden lg:block">
+                <PreviewPane content={tab.content} />
+              </div>
             </Tabs.Content>
           ))}
         </div>

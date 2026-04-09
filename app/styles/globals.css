@@ -50,6 +50,15 @@ a {
   text-decoration: none;
 }
 
+@keyframes project-label-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% + 10rem));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

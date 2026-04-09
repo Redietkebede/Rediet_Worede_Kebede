@@ -4,30 +4,32 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 const ctaBase =
-  "inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-medium tracking-wide transition-all duration-200";
+  "inline-flex h-10 items-center justify-center rounded-full px-4 text-sm font-medium tracking-wide transition-all duration-200 sm:h-11 sm:px-5";
 
 export function Hero() {
   return (
     <section
       id="hero"
-      className="snap-start snap-always flex min-h-dvh items-center pt-24 pb-14 md:pt-28 md:pb-16"
+      className="snap-start snap-always flex min-h-svh items-center pt-16 pb-10 sm:min-h-dvh sm:pt-20 sm:pb-12 md:pt-28 md:pb-16"
     >
       <Container>
-        <div className="max-w-4xl">
+        <div className="max-w-4xl pt-2 md:pt-0">
           <Reveal duration={0.42} y={14}>
-            <p className="inline-flex rounded-full border border-accent/35 bg-accent/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-accent">
+            <p className="inline-flex max-w-full rounded-full border border-accent/35 bg-accent/10 px-3 py-1 text-[10px] leading-4 font-medium whitespace-normal uppercase tracking-[0.14em] text-accent sm:text-xs sm:tracking-[0.2em]">
               {profile.headline}
             </p>
           </Reveal>
           <Reveal delay={0.05} duration={0.45} y={14}>
-            <Heading level={1} className="mt-6 max-w-3xl">
+            <Heading level={1} className="mt-7 max-w-[13ch] text-[2.85rem] leading-[1.02] sm:mt-8 sm:max-w-3xl sm:text-5xl">
               {profile.fullName}
             </Heading>
           </Reveal>
           <Reveal delay={0.1} duration={0.45} y={14}>
-            <Lead className="mt-6 max-w-3xl">{profile.intro}</Lead>
+            <Lead className="mt-5 max-w-[38ch] text-base leading-8 sm:mt-6 sm:max-w-3xl sm:text-lg md:text-xl">
+              {profile.intro}
+            </Lead>
           </Reveal>
-          <Stagger className="mt-9 flex flex-wrap gap-3" delayChildren={0.14} staggerChildren={0.07}>
+          <Stagger className="mt-8 flex flex-wrap items-center gap-2.5 sm:mt-9 sm:gap-3" delayChildren={0.14} staggerChildren={0.07}>
             <StaggerItem duration={0.36} y={10}>
               <Link
                 href="/#projects"
