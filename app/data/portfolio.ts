@@ -1,31 +1,86 @@
 export const profile = {
   fullName: "Rediet Worede Kebede",
-  headline: "Full-Stack Developer | AI Integration · Data Pipelines · APIs | TypeScript & Python",
+  headline: "Full-stack developer · AI integration",
   intro:
-    "I develop reliable web applications and AI systems from the ground up, ranging from user interfaces to RESTful APIs and implementing LLMs. I prefer constructing scalable architectures, with emphasis on performance, efficiency, and results.",
+    "I turn complex requirements into clear interfaces, connected APIs, and reliable data workflows, with AI features where they add value.",
   email: "KebedeRedietWro@gmail.com",
   phone: "+251-935-008-474",
-  location: "Addis Abeba, Ethiopia",
+  location: "Addis Ababa, Ethiopia",
+  availability:
+    "I’m interested in collaborating on software that makes everyday work clearer and easier.",
   linkedinUrl: "https://www.linkedin.com/in/rediet-worede-kebede",
   githubUrl: "https://github.com/Redietkebede",
   resumeUrl: "/Rediet-Worede-Kebede-Resume.pdf",
 } as const;
 
 export const about = {
-  bio: "My areas of expertise include developing production-quality web applications and systems using AI, ranging from the front end to REST services and data pipelines as well as building LLMs.",
+  bio: "I’m Rediet, a full-stack developer based in Addis Ababa. I build web applications, connect existing AI models to useful product features, and turn data into dashboards people can use.",
   focusAreas: [
-    "Full-stack web development (TypeScript/JavaScript + React/Next.js)",
-    "Frontend UI/UX (Tailwind CSS, shadcn/ui, Framer Motion, Recharts)",
-    "Backend engineering & REST APIs (Node.js, Express.js, FastAPI)",
-    "AI/LLM integration in products (OpenRouter, OpenAI, Gemini)",
-    "Data pipelines / ETL & analytics (Python, SQL)",
-    "Database-driven app development (Supabase, PostgreSQL, Prisma ORM, MongoDB)",
-    "Auth & app infrastructure (NextAuth, Zod, React Hook Form, Vercel)",
-    "Fintech/economic data applications & dashboards (FRED API, Alpha Vantage)",
+    "Responsive interfaces, clear application states, and usable navigation",
+    "AI features using existing models through OpenRouter, OpenAI, and Gemini",
+    "REST APIs, database design, authentication, and role-based access",
+    "Python and SQL pipelines that turn source data into useful dashboards",
   ],
   philosophy:
-    "I believe that an engineer should design robust, production-ready, end-to-end solutions with clear architectural designs and high efficiency, leveraging AI integration and sound API/data pipeline design to solve real-world user problems effectively.",
+    "I start with the workflow a person needs to complete, then connect the interface, business rules, and data behind it. I focus on predictable behavior, consistent information, and permissions that make each feature useful to the people who rely on it.",
 } as const;
+
+export const capabilities = [
+  {
+    title: "Responsive interfaces",
+    description:
+      "Clear, accessible interfaces that adapt to different screens and make complex tasks easier to follow.",
+    deliverables: [
+      "Forms, search, filters, and interactive views",
+      "Loading, empty, success, and error states",
+    ],
+  },
+  {
+    title: "Authentication & permissions",
+    description:
+      "Account and access features that connect each person with the information and actions relevant to them.",
+    deliverables: [
+      "Sign-in flows and protected application areas",
+      "Role-based access and permission checks",
+    ],
+  },
+  {
+    title: "APIs & integrations",
+    description:
+      "Connected systems that move information between interfaces, databases, and external services.",
+    deliverables: [
+      "REST endpoints and third-party integrations",
+      "Validation, business rules, and consistent responses",
+    ],
+  },
+  {
+    title: "Practical AI features",
+    description:
+      "Existing AI models connected to real application workflows, with useful input and structured results.",
+    deliverables: [
+      "Content generation and personalization",
+      "Model APIs connected to application data",
+    ],
+  },
+  {
+    title: "Data workflows & reporting",
+    description:
+      "Information collected, checked, and organized into views that are easier to explore and understand.",
+    deliverables: [
+      "Data ingestion, transformation, and validation",
+      "Charts, metrics, and interactive reporting",
+    ],
+  },
+  {
+    title: "Reliable application behavior",
+    description:
+      "Application logic that handles everyday workflows consistently and makes unexpected states easier to recover from.",
+    deliverables: [
+      "Workflow states, scheduling, and notifications",
+      "Debugging, data consistency, and performance improvements",
+    ],
+  },
+] as const;
 
 export const skillCategories = [
   {
@@ -158,11 +213,13 @@ export const experiences = [
     company: "MMCY",
     employmentType: "Full-time",
     period: "Jul 2025 - Present",
-    location: "Addis Abeba, Ethiopia",
+    location: "Addis Ababa, Ethiopia",
     mode: "On-site",
     achievements: [
-      "Web Development and Full-Stack Development",
-      "Collaborating on production-focused engineering tasks in an on-site team environment",
+      "Built configurable workflows with custom states, validation rules, and relationships between records.",
+      "Improved consistency across connected views by tracing and resolving data discrepancies.",
+      "Implemented role-based access and notification behavior so people see relevant information and actions.",
+      "Translated business requirements into application logic, including scheduling and approval checks.",
     ],
   },
 ] as const;
