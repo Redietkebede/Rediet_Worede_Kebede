@@ -63,13 +63,8 @@ async function sendWithResend(params: { name: string; email: string; message: st
   const fromEmail = process.env.CONTACT_FROM_EMAIL ?? "Portfolio Contact <onboarding@resend.dev>";
 
   if (!apiKey || !toEmail) {
-    if (process.env.NODE_ENV !== "production") {
-      console.warn(
-        "[contact-api] Missing RESEND_API_KEY or CONTACT_TO_EMAIL. Message accepted in dev without email delivery.",
-      );
-      return { delivered: false, reason: "dev-no-email-config" as const };
-    }
-    throw new Error("Email service is not configured.");
+    console.warn("[contact-api] Email delivery unavailable: missing email configuration.");
+    return { delivered: false as const };
   }
 
   const html = `
@@ -119,10 +114,7 @@ export async function POST(request: Request) {
   try {
     payload = (await request.json()) as ContactPayload;
   } catch {
-    return NextResponse.json(
-      { ok: false, error: "Invalid request payload." },
-      { status: 400 },
-    );
+    return NextResponse.json({ ok: false, error: "Invalid request payload." }, { status: 400 });
   }
 
   const { isValid, fieldErrors, data } = validateContactInput(payload);
@@ -142,11 +134,13 @@ export async function POST(request: Request) {
     });
 
     if (!result.delivered) {
-      return NextResponse.json({
-        ok: true,
-        message:
-          "Message received. Email delivery is disabled in local dev until RESEND_API_KEY and CONTACT_TO_EMAIL are set.",
-      });
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "Your message couldn’t be sent right now. Please email me directly.",
+        },
+        { status: 503 },
+      );
     }
 
     return NextResponse.json({
@@ -158,7 +152,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         ok: false,
-        error: "Unable to send message right now. Please try again later.",
+        error: "Your message couldn’t be sent right now. Please email me directly.",
       },
       { status: 500 },
     );
