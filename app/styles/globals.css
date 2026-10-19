@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
 :root {
+  --font-portfolio: "Times New Roman", Times, serif;
   --background: #0b0b0b;
   --surface: #121212;
   --accent: #e50914;
+  --accent-text: #ff858b;
   --text-primary: #ffffff;
-  --text-secondary: #a1a1aa;
+  --text-secondary: #b6b6c0;
   --border-strong: rgba(255, 255, 255, 0.16);
   --border-soft: rgba(255, 255, 255, 0.08);
 }
@@ -14,27 +16,37 @@
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-border-strong: var(--border-strong);
   --color-border-soft: var(--border-soft);
   --animate-star-btn: star-btn calc(var(--duration) * 1s) linear infinite;
-  --font-sans: "Times New Roman", Times, serif;
-  --font-mono: var(--font-geist-mono), "IBM Plex Mono", monospace;
+  --font-sans: var(--font-portfolio);
+  --font-serif: var(--font-portfolio);
+  --font-mono: var(--font-portfolio);
 }
 
 body {
   min-height: 100vh;
   background: var(--background);
   color: var(--text-primary);
-  font-family: var(--font-sans);
+  font-family: var(--font-portfolio);
   text-rendering: optimizeLegibility;
 }
 
 html {
+  font-family: var(--font-portfolio);
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
-  scroll-padding-top: 4.5rem;
+  scroll-padding-top: 6rem;
+}
+
+button,
+input,
+textarea,
+select,
+dialog {
+  font-family: inherit;
 }
 
 * {
@@ -46,9 +58,10 @@ html {
   color: var(--text-primary);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+a:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 4px;
 }
 
 @keyframes project-label-marquee {

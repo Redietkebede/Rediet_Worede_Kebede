@@ -85,13 +85,13 @@ export function StarButton({
       }
       ref={pathRef}
       className={cn(
-        "group/star-button relative z-[3] inline-flex h-10 items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-3xl px-4 py-2 text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50",
+        "group/star-button focus-visible:outline-accent-text relative z-[3] inline-flex h-10 items-center justify-center gap-2 overflow-hidden rounded-3xl px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 disabled:pointer-events-none disabled:opacity-50",
         className,
       )}
       {...props}
     >
       <div
-        className="animate-star-btn absolute inset-0 aspect-square bg-[radial-gradient(ellipse_at_center,var(--light-color),transparent,transparent)]"
+        className="animate-star-btn absolute inset-0 aspect-square bg-[radial-gradient(ellipse_at_center,var(--light-color),transparent,transparent)] transition-[filter] duration-300 group-hover/star-button:brightness-150 group-focus-visible/star-button:brightness-150"
         style={
           {
             offsetPath: "var(--path)",
@@ -107,7 +107,7 @@ export function StarButton({
       >
         <StarBackground color={backgroundColor} />
       </div>
-      <span className="relative z-10 inline-block bg-gradient-to-t from-black to-neutral-400 bg-clip-text text-transparent dark:from-white dark:to-neutral-500">
+      <span className="relative z-10 inline-block bg-gradient-to-t from-neutral-300 to-white bg-clip-text text-transparent transition-[filter] duration-300 group-hover/star-button:brightness-125">
         {children}
       </span>
     </button>
