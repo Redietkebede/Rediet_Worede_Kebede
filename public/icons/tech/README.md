@@ -1,0 +1,1 @@
+Technology marks: Devicon (https://github.com/devicons/devicon, MIT), Simple Icons (https://github.com/simple-icons/simple-icons, CC0), Lobe Icons (https://github.com/lobehub/lobe-icons, MIT), and Auth.js (https://authjs.dev). Licenses are included beside these assets. Names and logos belong to their respective owners.

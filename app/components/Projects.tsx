@@ -3,6 +3,7 @@ import { Section } from "@/components/ui";
 import { ArrowUpRight, Code2 } from "lucide-react";
 import { ProjectLivePreview } from "./ProjectLivePreview";
 import { CaseStudyDialog } from "./CaseStudyDialog";
+import { TechIcon } from "./TechIcon";
 
 export function Projects() {
   return (
@@ -42,6 +43,7 @@ export function Projects() {
                     key={tech}
                     className="border-border-strong bg-surface text-text-secondary inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs leading-5"
                   >
+                    <TechIcon name={tech} />
                     {tech}
                   </li>
                 ))}
