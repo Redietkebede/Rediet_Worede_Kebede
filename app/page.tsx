@@ -7,12 +7,12 @@ import { Skills } from "@/app/components/Skills";
 
 export default function Home() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background text-text-primary">
+    <div className="bg-background text-text-primary min-h-screen">
       <Hero />
-      <About />
-      <Skills />
       <Projects />
+      <About />
       <Experience />
+      <Skills />
       <Contact />
     </div>
   );

@@ -1,43 +1,96 @@
 import { projects } from "@/app/data/portfolio";
 import { Section } from "@/components/ui";
-import { Feature108 } from "@/components/ui/shadcnblocks-com-feature";
-
-const previewImages = [
-  "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1600&q=80",
-  "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80",
-  "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1600&q=80",
-  "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1600&q=80",
-];
-
-const projectIconKeys = ["exam", "fitness", "learning", "finance"] as const;
+import { ArrowUpRight, Code2 } from "lucide-react";
+import { ProjectLivePreview } from "./ProjectLivePreview";
+import { CaseStudyDialog } from "./CaseStudyDialog";
 
 export function Projects() {
-  const tabs = projects.map((project, index) => ({
-    iconKey: projectIconKeys[Math.min(index, projectIconKeys.length - 1)],
-    value: `tab-${index + 1}`,
-    label: project.title,
-    content: {
-      badge: `Project ${String(index + 1).padStart(2, "0")}`,
-      title: project.title,
-      description: `${project.problem} ${project.solution}`,
-      imageSrc: previewImages[index % previewImages.length],
-      imageAlt: `${project.title} preview`,
-      previewUrl: project.demoUrl,
-      liveUrl: project.demoUrl,
-      githubUrl: project.githubUrl,
-      techStack: [...project.techStack],
-    },
-  }));
-
   return (
     <Section
       id="projects"
-      eyebrow="Projects"
-      title="Featured Work"
-      lazyMinHeight={460}
-      className="border-y border-border-soft bg-surface/45"
+      eyebrow="Selected projects"
+      title="See what I build"
+      description="Explore the applications, the problems behind them, and the features I delivered. Each project includes a live demo and source code."
+      className="border-border-soft bg-surface/45 border-y"
     >
-      <Feature108 tabs={tabs} />
+      <div className="grid min-w-0 gap-6 lg:grid-cols-2 lg:gap-8">
+        {projects.map((project) => (
+          <article
+            key={project.slug}
+            id={`project-${project.slug}`}
+            className="border-border-strong bg-background flex min-w-0 flex-col overflow-hidden rounded-2xl border"
+          >
+            <ProjectLivePreview title={project.title} url={project.demoUrl} />
+            <div className="flex flex-1 flex-col p-5 sm:p-6">
+              <p className="text-accent-text text-xs font-medium tracking-wide">
+                {project.category}
+              </p>
+              <h3 className="mt-3 text-xl leading-snug font-semibold sm:text-2xl">
+                {project.title}
+              </h3>
+              <p className="text-text-secondary mt-3 text-sm leading-7 sm:text-base">
+                {project.summary}
+              </p>
+              {"demoNote" in project ? (
+                <p className="border-border-soft bg-surface text-text-secondary mt-3 rounded-xl border p-3 text-xs leading-6">
+                  {project.demoNote}
+                </p>
+              ) : null}
+              <ul className="mt-4 flex flex-wrap gap-2" aria-label="Project technologies">
+                {project.techStack.map((tech) => (
+                  <li
+                    key={tech}
+                    className="border-border-strong bg-surface text-text-secondary inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs leading-5"
+                  >
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+              <CaseStudyDialog slug={project.slug} title={project.title}>
+                <dl className="mt-2 grid gap-4 text-sm leading-6">
+                  {[
+                    ["The problem", project.problem],
+                    ["My contribution", project.solution],
+                    ["My role", project.role],
+                    ["What I delivered", project.outcome],
+                  ].map(([label, value]) => (
+                    <div key={label}>
+                      <dt className="text-text-primary font-semibold">{label}</dt>
+                      <dd className="text-text-secondary mt-1">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <h4 className="mt-4 text-sm font-semibold">Key features</h4>
+                <ul className="text-text-secondary mt-2 list-disc space-y-1 pl-5 text-sm leading-6">
+                  {project.features.map((feature) => (
+                    <li key={feature}>{feature}</li>
+                  ))}
+                </ul>
+              </CaseStudyDialog>
+              <div className="mt-auto flex flex-wrap items-center gap-3 pt-6">
+                <a
+                  href={project.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-accent inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#c90812]"
+                  aria-label={`Open demo: ${project.title}`}
+                >
+                  Open Demo <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </a>
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border-border-strong hover:border-text-secondary inline-flex min-h-11 items-center justify-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-colors"
+                  aria-label={`View source code: ${project.title}`}
+                >
+                  <Code2 className="h-4 w-4" aria-hidden="true" /> Source Code
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
     </Section>
   );
 }

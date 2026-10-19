@@ -62,6 +62,13 @@ export const skillCategories = [
 export const projects = [
   {
     title: "Demo Examination Platform",
+    slug: "exams",
+    category: "Education · AI integration",
+    summary:
+      "A study platform that generates topic-based questions and offers three ways to practice.",
+    role: "Full-stack development and AI integration",
+    outcome:
+      "A working exam application with generated questions, saved sessions, and performance tracking.",
     problem: "Manual and static exam generation is slow, repetitive, and hard to personalize.",
     solution:
       "Built an AI-powered exam system with Practice, Timed, and Survival modes that generates MCQs in real time and persists question sets with user analytics.",
@@ -77,7 +84,14 @@ export const projects = [
   },
   {
     title: "Gym Booking System",
-    problem: "Gym schedules and bookings were being managed manually, causing inefficiency and errors.",
+    slug: "booking",
+    category: "Booking · Business workflows",
+    summary:
+      "A fitness booking application connecting customer reservations with service and booking management.",
+    role: "Full-stack development and relational database design",
+    outcome: "Customer booking and staff administration connected through a PostgreSQL database.",
+    problem:
+      "Gym schedules and bookings were being managed manually, causing inefficiency and errors.",
     solution:
       "Developed a full-stack booking platform with an admin workflow for booking, services, and status management backed by relational data models.",
     techStack: ["Next.js", "TypeScript", "Prisma ORM", "PostgreSQL", "Tailwind CSS"],
@@ -92,7 +106,14 @@ export const projects = [
   },
   {
     title: "AI Learning Path Generator Platform",
-    problem: "Self-learning is often unstructured, making progress inconsistent and hard to sustain.",
+    slug: "learning",
+    category: "Learning · AI integration",
+    summary: "Personalized learning roadmaps based on a learner’s goals and current skill level.",
+    role: "Full-stack development and AI integration",
+    outcome:
+      "A roadmap generation workflow with supporting marketing pages, blog routes, and event tracking.",
+    problem:
+      "Self-learning is often unstructured, making progress inconsistent and hard to sustain.",
     solution:
       "Created a personalized roadmap generator that tailors learning paths to user goals and proficiency, paired with SaaS-style growth features.",
     techStack: ["Next.js", "TypeScript", "OpenRouter", "Supabase", "Framer Motion"],
@@ -107,7 +128,16 @@ export const projects = [
   },
   {
     title: "Financial & Economic Intelligence Dashboard",
-    problem: "Economic and market datasets are fragmented and difficult to convert into actionable insights.",
+    slug: "finance",
+    demoNote: "Live interface preview. Data views are currently unavailable.",
+    category: "Analytics · Data engineering",
+    summary:
+      "An interactive dashboard bringing economic indicators and market signals into one place.",
+    role: "Dashboard development and data pipeline engineering",
+    outcome:
+      "An explorable dashboard with macroeconomic indicators, a Macro Risk Index, and currency strength rankings.",
+    problem:
+      "Economic and market datasets are fragmented and difficult to convert into actionable insights.",
     solution:
       "Built an end-to-end intelligence dashboard with ETL ingestion, macro-signal computation, and web delivery for analysis-ready decision support.",
     techStack: ["Next.js", "TypeScript", "Python", "FRED API", "Alpha Vantage", "SQL"],
