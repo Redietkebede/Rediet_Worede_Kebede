@@ -20,26 +20,20 @@ export function Section({
   title,
   description,
   children,
-  lazyChildren = true,
+  lazyChildren = false,
   lazyThreshold = 0.5,
   lazyMinHeight = 260,
   className,
   ...props
 }: SectionProps) {
   return (
-    <section
-      className={cn(
-        "snap-start snap-always flex min-h-[calc(100dvh-4rem)] items-start pt-6 pb-14 md:pt-8 md:pb-16",
-        className,
-      )}
-      {...props}
-    >
+    <section className={cn("py-14 sm:py-16 lg:py-20", className)} {...props}>
       <Container>
         {(eyebrow ?? title ?? description) && (
           <Reveal>
             <header className="mb-10 max-w-2xl">
               {eyebrow && (
-                <p className="mb-4 inline-flex rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-accent">
+                <p className="border-accent/30 bg-accent/10 text-accent-text mb-4 inline-flex rounded-full border px-3 py-1.5 text-xs font-medium tracking-[0.16em] uppercase">
                   {eyebrow}
                 </p>
               )}

@@ -26,6 +26,12 @@ export function AetherFlowHero({ className }: AetherFlowHeroProps) {
     if (!ctx) return;
 
     let frameId = 0;
+    let lastFrame = 0;
+    let inView = true;
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const desktopQuery = window.matchMedia("(min-width: 768px) and (pointer: fine)");
+    const shouldAnimate = () =>
+      !motionQuery.matches && desktopQuery.matches && inView && !document.hidden;
     let particles: Particle[] = [];
     const mouse = { x: -9999, y: -9999, radius: 190 };
     const cellSize = 120;
@@ -44,6 +50,7 @@ export function AetherFlowHero({ className }: AetherFlowHeroProps) {
       canvas.width = Math.max(1, Math.floor(bounds.width));
       canvas.height = Math.max(1, Math.floor(bounds.height));
       initParticles();
+      syncAnimation();
     };
 
     const initParticles = () => {
@@ -124,7 +131,13 @@ export function AetherFlowHero({ className }: AetherFlowHeroProps) {
       ctx.shadowBlur = 0;
     };
 
-    const animate = () => {
+    const animate = (now = 0) => {
+      frameId = 0;
+      if (shouldAnimate() && now - lastFrame < 1000 / 30) {
+        frameId = window.requestAnimationFrame(animate);
+        return;
+      }
+      lastFrame = now;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#0b0b0b";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -158,7 +171,14 @@ export function AetherFlowHero({ className }: AetherFlowHeroProps) {
       }
 
       drawConnections();
-      frameId = window.requestAnimationFrame(animate);
+      if (shouldAnimate()) frameId = window.requestAnimationFrame(animate);
+    };
+
+    const syncAnimation = () => {
+      window.cancelAnimationFrame(frameId);
+      frameId = 0;
+      lastFrame = 0;
+      animate();
     };
 
     const handleMouseMove = (event: MouseEvent) => {
@@ -173,15 +193,26 @@ export function AetherFlowHero({ className }: AetherFlowHeroProps) {
     };
 
     const observer = new ResizeObserver(resizeCanvas);
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting;
+      syncAnimation();
+    });
     observer.observe(canvas);
+    visibilityObserver.observe(canvas);
     resizeCanvas();
-    animate();
+    motionQuery.addEventListener("change", syncAnimation);
+    desktopQuery.addEventListener("change", syncAnimation);
+    document.addEventListener("visibilitychange", syncAnimation);
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseout", handleMouseLeave);
 
     return () => {
       observer.disconnect();
+      visibilityObserver.disconnect();
+      motionQuery.removeEventListener("change", syncAnimation);
+      desktopQuery.removeEventListener("change", syncAnimation);
+      document.removeEventListener("visibilitychange", syncAnimation);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseout", handleMouseLeave);
       window.cancelAnimationFrame(frameId);

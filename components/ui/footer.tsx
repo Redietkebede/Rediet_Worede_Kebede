@@ -46,12 +46,18 @@ export function Footer({
   const hasRightLinks = hasMainLinks || hasLegalLinks;
 
   return (
-    <footer className="border-t border-border-soft bg-surface/55 pb-6 pt-7 lg:pb-8 lg:pt-10">
+    <footer className="border-border-soft bg-surface/55 border-t pt-7 pb-6 lg:pt-10 lg:pb-8">
       <div className="px-4 lg:px-8">
         <div className="md:flex md:items-start md:justify-between">
-          <Link href="/" className="inline-flex items-center gap-x-2.5" aria-label={brandName}>
+          <Link
+            href="/"
+            className="inline-flex max-w-full items-center gap-x-2.5"
+            aria-label={brandName}
+          >
             {logo}
-            <span className="text-lg font-semibold tracking-tight text-text-primary">{brandName}</span>
+            <span className="text-text-primary min-w-0 text-base font-semibold tracking-tight sm:text-lg">
+              {brandName}
+            </span>
           </Link>
 
           <ul className="mt-6 flex list-none gap-3 md:mt-0">
@@ -60,10 +66,15 @@ export function Footer({
                 <Button
                   variant="outline"
                   size="icon"
-                  className="h-10 w-10 rounded-full border-border-strong bg-background/75 text-text-secondary hover:border-accent hover:text-text-primary"
+                  className="border-border-strong bg-background/75 text-text-secondary hover:border-accent hover:text-text-primary h-10 w-10 rounded-full"
                   asChild
                 >
-                  <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.label}
+                  >
                     {link.icon}
                   </a>
                 </Button>
@@ -74,25 +85,37 @@ export function Footer({
 
         <div
           className={cn(
-            "mt-6 border-t border-border-soft pt-6 md:mt-4 md:pt-8",
+            "border-border-soft mt-6 border-t pt-6 md:mt-4 md:pt-8",
             hasRightLinks ? "lg:grid lg:grid-cols-10" : "",
           )}
         >
-          <div className={cn("text-sm leading-6 text-text-secondary", hasRightLinks ? "space-y-4 lg:col-[1/4] lg:row-[1/3]" : "")}>
+          <div
+            className={cn(
+              "text-text-secondary text-sm leading-6",
+              hasRightLinks ? "space-y-4 lg:col-[1/4] lg:row-[1/3]" : "",
+            )}
+          >
             {hasRightLinks ? (
               <>
                 {profileInfo.length ? (
                   <ul className="space-y-2.5">
                     {profileInfo.map((item) => (
-                      <li key={item.label} className="flex items-center gap-2.5">
-                        <span className="text-text-secondary">{item.icon}</span>
-                        <span className="text-xs uppercase tracking-[0.14em] text-text-secondary/80">{item.label}:</span>
+                      <li key={item.label} className="flex min-w-0 items-start gap-2.5">
+                        <span className="text-text-secondary shrink-0 pt-1">{item.icon}</span>
+                        <span className="text-text-secondary shrink-0 text-xs leading-6 tracking-[0.08em] uppercase">
+                          {item.label}:
+                        </span>
                         {item.href ? (
-                          <a href={item.href} className="text-text-primary transition hover:text-accent">
+                          <a
+                            href={item.href}
+                            className="text-text-primary hover:text-accent-text min-w-0 break-all transition"
+                          >
                             {item.value}
                           </a>
                         ) : (
-                          <span className="text-text-primary">{item.value}</span>
+                          <span className="text-text-primary min-w-0 break-words">
+                            {item.value}
+                          </span>
                         )}
                       </li>
                     ))}
@@ -109,22 +132,33 @@ export function Footer({
                 {profileInfo.length ? (
                   <ul className="space-y-2.5">
                     {profileInfo.map((item) => (
-                      <li key={item.label} className="flex items-center gap-2.5">
-                        <span className="text-text-secondary">{item.icon}</span>
-                        <span className="text-xs uppercase tracking-[0.14em] text-text-secondary/80">{item.label}:</span>
+                      <li key={item.label} className="flex min-w-0 items-start gap-2.5">
+                        <span className="text-text-secondary shrink-0 pt-1">{item.icon}</span>
+                        <span className="text-text-secondary shrink-0 text-xs leading-6 tracking-[0.08em] uppercase">
+                          {item.label}:
+                        </span>
                         {item.href ? (
-                          <a href={item.href} className="text-text-primary transition hover:text-accent">
+                          <a
+                            href={item.href}
+                            className="text-text-primary hover:text-accent-text min-w-0 break-all transition"
+                          >
                             {item.value}
                           </a>
                         ) : (
-                          <span className="text-text-primary">{item.value}</span>
+                          <span className="text-text-primary min-w-0 break-words">
+                            {item.value}
+                          </span>
                         )}
                       </li>
                     ))}
                   </ul>
                 ) : null}
 
-                <div className={cn(profileInfo.length ? "mt-4 md:mt-0 md:text-right" : "md:text-right")}>
+                <div
+                  className={cn(
+                    profileInfo.length ? "mt-4 md:mt-0 md:text-right" : "md:text-right",
+                  )}
+                >
                   <div>{copyright.text}</div>
                   {copyright.license && <div>{copyright.license}</div>}
                 </div>
@@ -138,11 +172,17 @@ export function Footer({
                 {mainLinks.map((link) => (
                   <li key={link.label} className="mx-2 my-1 shrink-0">
                     {isInternal(link.href) ? (
-                      <Link href={link.href} className="text-sm text-text-primary underline-offset-4 hover:underline">
+                      <Link
+                        href={link.href}
+                        className="text-text-primary text-sm underline-offset-4 hover:underline"
+                      >
                         {link.label}
                       </Link>
                     ) : (
-                      <a href={link.href} className="text-sm text-text-primary underline-offset-4 hover:underline">
+                      <a
+                        href={link.href}
+                        className="text-text-primary text-sm underline-offset-4 hover:underline"
+                      >
                         {link.label}
                       </a>
                     )}
@@ -158,11 +198,17 @@ export function Footer({
                 {legalLinks.map((link) => (
                   <li key={link.label} className="mx-3 my-1 shrink-0">
                     {isInternal(link.href) ? (
-                      <Link href={link.href} className="text-sm text-text-secondary underline-offset-4 hover:underline">
+                      <Link
+                        href={link.href}
+                        className="text-text-secondary text-sm underline-offset-4 hover:underline"
+                      >
                         {link.label}
                       </Link>
                     ) : (
-                      <a href={link.href} className="text-sm text-text-secondary underline-offset-4 hover:underline">
+                      <a
+                        href={link.href}
+                        className="text-text-secondary text-sm underline-offset-4 hover:underline"
+                      >
                         {link.label}
                       </a>
                     )}

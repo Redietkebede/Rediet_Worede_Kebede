@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Text } from "@/components/ui";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 
 type FormValues = {
   name: string;
@@ -43,6 +43,7 @@ function validate(values: FormValues) {
 }
 
 export function ContactForm() {
+  const formRef = useRef<HTMLFormElement>(null);
   const [values, setValues] = useState<FormValues>({
     name: "",
     email: "",
@@ -62,6 +63,8 @@ export function ContactForm() {
     if (Object.keys(nextErrors).length > 0) {
       setState("error");
       setFeedback("Please fix the highlighted fields.");
+      const firstInvalid = Object.keys(nextErrors)[0];
+      formRef.current?.querySelector<HTMLElement>(`[name="${firstInvalid}"]`)?.focus();
       return;
     }
 
@@ -105,17 +108,20 @@ export function ContactForm() {
     state === "success"
       ? "text-emerald-400"
       : state === "error"
-        ? "text-accent"
+        ? "text-accent-text"
         : "text-text-secondary";
 
   return (
     <form
+      ref={formRef}
       onSubmit={handleSubmit}
-      className="transform-gpu rounded-2xl border border-border-soft bg-background/70 p-6 transition-transform duration-300 hover:-translate-y-0.5"
+      className="border-border-soft bg-background/70 min-w-0 rounded-2xl border p-4 sm:p-6"
       noValidate
     >
-      <h3 className="text-lg font-semibold text-text-primary">Send a Message</h3>
-      <Text className="mt-2">Share your project idea, role details, or collaboration scope.</Text>
+      <h3 className="text-text-primary text-lg font-semibold">Send a Message</h3>
+      <Text className="mt-2">
+        Share an idea, a challenge, or where a technical perspective could help.
+      </Text>
 
       <input
         type="text"
@@ -129,68 +135,93 @@ export function ContactForm() {
       />
 
       <div className="mt-5 grid gap-4 sm:grid-cols-2">
-        <label className="grid gap-2 text-sm text-text-secondary">
-          Name
+        <div className="text-text-secondary grid min-w-0 gap-2 text-sm">
+          <label htmlFor="contact-name">Name</label>
           <input
+            id="contact-name"
             type="text"
             name="name"
             value={values.name}
             onChange={(event) => setValues((prev) => ({ ...prev, name: event.target.value }))}
-            className="h-11 rounded-xl border border-border-strong bg-surface px-3 text-sm text-text-primary outline-none transition focus:border-accent"
+            className="border-border-strong bg-surface text-text-primary focus:border-accent-text h-11 w-full min-w-0 rounded-xl border px-3 text-base transition outline-none"
             placeholder="Your name"
             autoComplete="name"
             required
             minLength={2}
             maxLength={80}
             aria-invalid={Boolean(errors.name)}
+            aria-describedby={errors.name ? "contact-name-error" : undefined}
           />
-          {errors.name ? <span className="text-xs text-accent">{errors.name}</span> : null}
-        </label>
+          {errors.name ? (
+            <span id="contact-name-error" className="text-accent-text text-sm">
+              {errors.name}
+            </span>
+          ) : null}
+        </div>
 
-        <label className="grid gap-2 text-sm text-text-secondary">
-          Email
+        <div className="text-text-secondary grid min-w-0 gap-2 text-sm">
+          <label htmlFor="contact-email">Email</label>
           <input
+            id="contact-email"
             type="email"
             name="email"
             value={values.email}
             onChange={(event) => setValues((prev) => ({ ...prev, email: event.target.value }))}
-            className="h-11 rounded-xl border border-border-strong bg-surface px-3 text-sm text-text-primary outline-none transition focus:border-accent"
+            className="border-border-strong bg-surface text-text-primary focus:border-accent-text h-11 w-full min-w-0 rounded-xl border px-3 text-base transition outline-none"
             placeholder="you@example.com"
             autoComplete="email"
             required
             maxLength={120}
             aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? "contact-email-error" : undefined}
           />
-          {errors.email ? <span className="text-xs text-accent">{errors.email}</span> : null}
-        </label>
+          {errors.email ? (
+            <span id="contact-email-error" className="text-accent-text text-sm">
+              {errors.email}
+            </span>
+          ) : null}
+        </div>
 
-        <label className="grid gap-2 text-sm text-text-secondary sm:col-span-2">
-          Message
+        <div className="text-text-secondary grid min-w-0 gap-2 text-sm sm:col-span-2">
+          <label htmlFor="contact-message">Message</label>
           <textarea
+            id="contact-message"
             name="message"
             rows={5}
             value={values.message}
             onChange={(event) => setValues((prev) => ({ ...prev, message: event.target.value }))}
-            className="rounded-xl border border-border-strong bg-surface px-3 py-2 text-sm text-text-primary outline-none transition focus:border-accent"
-            placeholder="Tell me about your project or opportunity."
+            className="border-border-strong bg-surface text-text-primary focus:border-accent-text w-full min-w-0 rounded-xl border px-3 py-2 text-base transition outline-none"
+            placeholder="Describe the need, who it affects, and what a useful outcome would look like."
             required
             minLength={10}
             maxLength={2000}
             aria-invalid={Boolean(errors.message)}
+            aria-describedby={errors.message ? "contact-message-error" : undefined}
           />
-          {errors.message ? <span className="text-xs text-accent">{errors.message}</span> : null}
-        </label>
+          {errors.message ? (
+            <span id="contact-message-error" className="text-accent-text text-sm">
+              {errors.message}
+            </span>
+          ) : null}
+        </div>
       </div>
 
-      <div className="mt-5 flex items-center justify-between gap-4">
+      <div className="mt-5 flex flex-col items-stretch gap-4 sm:items-start">
         <Button
           type="submit"
-          className="transform-gpu hover:-translate-y-0.5"
+          className="shrink-0 whitespace-nowrap sm:min-w-40"
           disabled={state === "submitting"}
         >
           {state === "submitting" ? "Sending..." : "Send Message"}
         </Button>
-        {feedback ? <p className={`text-sm ${statusClass}`}>{feedback}</p> : null}
+        <p
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          className={`text-sm leading-6 ${statusClass}`}
+        >
+          {feedback}
+        </p>
       </div>
     </form>
   );
