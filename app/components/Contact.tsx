@@ -6,10 +6,9 @@ export function Contact() {
   return (
     <Section
       id="contact"
-      eyebrow="Contact"
       title="Let’s build something useful together"
       description="Tell me about your goals, the people you’re building for, and the challenge you’d like to solve."
-      className="border-border-soft bg-surface/45 border-y"
+      className="border-border-soft bg-surface/45 min-h-svh border-y"
     >
       <Stagger
         className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)]"

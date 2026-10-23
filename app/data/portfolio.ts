@@ -1,6 +1,6 @@
 export const profile = {
   fullName: "Rediet Worede Kebede",
-  headline: "Full-stack developer · AI integration",
+  headline: "Full-stack Developer · Backend & AI Integration",
   intro:
     "I turn complex requirements into clear interfaces, connected APIs, and reliable data workflows, with AI features where they add value.",
   email: "KebedeRedietWro@gmail.com",
@@ -14,7 +14,7 @@ export const profile = {
 } as const;
 
 export const about = {
-  bio: "I’m Rediet, a full-stack developer based in Addis Ababa. I build web applications, connect existing AI models to useful product features, and turn data into dashboards people can use.",
+  bio: "I’m a full-stack developer based in Addis Ababa. I build web applications, connect existing AI models to useful product features, and turn data into dashboards people can use.",
   focusAreas: [
     "Responsive interfaces, clear application states, and usable navigation",
     "AI features using existing models through OpenRouter, OpenAI, and Gemini",

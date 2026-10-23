@@ -1,8 +1,6 @@
 "use client";
 
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { HoverGlowButton, StarButton } from "@/components/ui";
 import { useEffect, useRef, useState } from "react";
 
@@ -16,17 +14,17 @@ const navItems = [
 
 function AnimatedDesktopNavLink({ href, label }: { href: string; label: string }) {
   return (
-    <Link
+    <a
       href={href}
       className="group text-text-secondary hover:text-text-primary focus-visible:text-text-primary relative inline-flex min-h-11 items-center text-sm font-medium transition-colors"
     >
-      <span className="relative block h-[1.15em] overflow-hidden leading-none">
-        <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full group-focus-visible:-translate-y-full">
+      <span className="relative block h-[1.5em] overflow-hidden leading-[1.5]">
+        <span className="block h-full transition-transform duration-300 ease-out group-hover:-translate-y-full group-focus-visible:-translate-y-full">
           {label}
         </span>
         <span
           aria-hidden="true"
-          className="text-text-primary absolute top-full left-0 block transition-transform duration-300 ease-out group-hover:-translate-y-full group-focus-visible:-translate-y-full"
+          className="text-text-primary absolute top-full left-0 block h-full transition-transform duration-300 ease-out group-hover:-translate-y-full group-focus-visible:-translate-y-full"
         >
           {label}
         </span>
@@ -35,12 +33,11 @@ function AnimatedDesktopNavLink({ href, label }: { href: string; label: string }
         aria-hidden="true"
         className="bg-accent pointer-events-none absolute bottom-1.5 left-0 h-px w-0 transition-all duration-300 group-hover:w-full group-focus-visible:w-full"
       />
-    </Link>
+    </a>
   );
 }
 
 export function Navbar() {
-  const router = useRouter();
   const [open, setOpen] = useState(false);
   const menuRootRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -74,7 +71,7 @@ export function Navbar() {
         <StarButton
           onClick={() => {
             setOpen(false);
-            router.push("/#hero");
+            window.location.assign("/#hero");
           }}
           aria-label="Rediet Worede Kebede — home"
           duration={2.8}
@@ -95,7 +92,7 @@ export function Navbar() {
           <HoverGlowButton
             onClick={() => {
               setOpen(false);
-              router.push("/#contact");
+              window.location.assign("/#contact");
             }}
             glowColor="rgba(229, 9, 20, 0.62)"
             backgroundColor="rgba(18, 18, 18, 0.9)"
@@ -127,14 +124,14 @@ export function Navbar() {
             className="border-border-strong bg-background absolute top-[calc(100%+1rem)] right-0 max-h-[calc(100svh-7rem)] w-56 max-w-[calc(100vw-2.5rem)] overflow-y-auto rounded-2xl border p-2 shadow-xl md:hidden"
           >
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className="text-text-secondary hover:bg-surface flex min-h-11 items-center rounded-xl px-3 py-2 text-sm transition-colors hover:text-white"
               >
                 {item.label}
-              </Link>
+              </a>
             ))}
           </nav>
         </div>

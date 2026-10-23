@@ -31,31 +31,22 @@ export function Hero() {
           </Lead>
           <div className="mt-6 flex flex-col gap-3 min-[400px]:flex-row min-[400px]:flex-wrap sm:mt-8">
             <Link
-              href="/#contact"
+              href={profile.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`${ctaBase} bg-accent font-semibold text-white hover:bg-[#c90812]`}
             >
-              Let’s Collaborate
+              View Résumé
             </Link>
             <Link
-              href="/#projects"
+              href="/#contact"
               className={`${ctaBase} border-border-strong bg-surface text-text-primary hover:border-text-secondary border`}
             >
-              View Projects
+              Let’s Collaborate
             </Link>
           </div>
           <p className="text-text-secondary mt-5 text-xs leading-6 sm:mt-7 sm:text-sm">
             Based in {profile.location}
-            <span className="mx-2" aria-hidden="true">
-              ·
-            </span>
-            <Link
-              href={profile.resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="decoration-border-strong inline-block underline underline-offset-4 hover:text-white"
-            >
-              View résumé
-            </Link>
           </p>
         </div>
       </Container>

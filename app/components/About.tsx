@@ -5,7 +5,6 @@ export function About() {
   return (
     <Section
       id="about"
-      eyebrow="About"
       title="Practical software, from interface to data"
       description={about.bio}
       className="border-border-soft bg-surface/45 border-y"

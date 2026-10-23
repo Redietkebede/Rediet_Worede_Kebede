@@ -5,7 +5,6 @@ export function Services() {
   return (
     <Section
       id="services"
-      eyebrow="Capabilities"
       title="Features I build and improve"
       description="The technical pieces I bring to a collaboration, shaped around what people need the software to do."
     >

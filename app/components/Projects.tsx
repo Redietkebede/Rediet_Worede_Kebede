@@ -9,7 +9,6 @@ export function Projects() {
   return (
     <Section
       id="projects"
-      eyebrow="Selected projects"
       title="See what I build"
       description="Explore the applications, the problems behind them, and the features I delivered. Each project includes a live demo and source code."
       className="border-border-soft bg-surface/45 border-y"

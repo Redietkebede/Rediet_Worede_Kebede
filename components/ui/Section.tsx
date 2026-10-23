@@ -6,7 +6,6 @@ import { Heading, Text } from "@/components/ui/Typography";
 import { cn } from "@/lib/utils";
 
 export interface SectionProps extends ComponentPropsWithoutRef<"section"> {
-  eyebrow?: string;
   title?: string;
   description?: string;
   children: ReactNode;
@@ -16,7 +15,6 @@ export interface SectionProps extends ComponentPropsWithoutRef<"section"> {
 }
 
 export function Section({
-  eyebrow,
   title,
   description,
   children,
@@ -27,16 +25,17 @@ export function Section({
   ...props
 }: SectionProps) {
   return (
-    <section className={cn("py-14 sm:py-16 lg:py-20", className)} {...props}>
+    <section
+      className={cn(
+        "-scroll-mt-14 py-14 sm:-scroll-mt-16 sm:py-16 lg:-scroll-mt-20 lg:py-20",
+        className,
+      )}
+      {...props}
+    >
       <Container>
-        {(eyebrow ?? title ?? description) && (
+        {(title ?? description) && (
           <Reveal>
             <header className="mb-10 max-w-2xl">
-              {eyebrow && (
-                <p className="border-accent/30 bg-accent/10 text-accent-text mb-4 inline-flex rounded-full border px-3 py-1.5 text-xs font-medium tracking-[0.16em] uppercase">
-                  {eyebrow}
-                </p>
-              )}
               {title && (
                 <Heading level={2} className="mb-4">
                   {title}

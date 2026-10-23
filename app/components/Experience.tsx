@@ -5,7 +5,6 @@ export function Experience() {
   return (
     <Section
       id="experience"
-      eyebrow="Experience"
       title="Professional Experience"
       description="Building reliable application features, improving data consistency, and translating requirements into maintainable software."
     >

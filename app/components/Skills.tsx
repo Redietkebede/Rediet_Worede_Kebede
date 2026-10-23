@@ -6,7 +6,6 @@ export function Skills() {
   return (
     <Section
       id="skills"
-      eyebrow="Skills"
       title="Technical Stack"
       description="The languages, frameworks, and tools I work with across interfaces, APIs, AI features, and data workflows."
     >
