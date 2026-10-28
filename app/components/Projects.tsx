@@ -1,7 +1,7 @@
 import { projects } from "@/app/data/portfolio";
 import { Section } from "@/components/ui";
 import { ArrowUpRight, Code2 } from "lucide-react";
-import { ProjectLivePreview } from "./ProjectLivePreview";
+import Image from "next/image";
 import { CaseStudyDialog } from "./CaseStudyDialog";
 import { TechIcon } from "./TechIcon";
 
@@ -10,7 +10,7 @@ export function Projects() {
     <Section
       id="projects"
       title="See what I build"
-      description="Explore the applications, the problems behind them, and the features I delivered. Each project includes a live demo and source code."
+      description="Selected applications, my contributions, and the results. Explore demos, interface previews, and source code."
       className="border-border-soft bg-surface/45 border-y"
     >
       <div className="grid min-w-0 gap-6 lg:grid-cols-2 lg:gap-8">
@@ -20,7 +20,15 @@ export function Projects() {
             id={`project-${project.slug}`}
             className="border-border-strong bg-background flex min-w-0 flex-col overflow-hidden rounded-2xl border"
           >
-            <ProjectLivePreview title={project.title} url={project.demoUrl} />
+            <div className="border-border-soft bg-surface relative aspect-[8/5] overflow-hidden border-b">
+              <Image
+                src={`/projects/${project.slug}.png`}
+                alt={`${project.title} interface screenshot`}
+                fill
+                sizes="(min-width: 1152px) 512px, (min-width: 1024px) 45vw, 100vw"
+                className="object-cover object-top"
+              />
+            </div>
             <div className="flex flex-1 flex-col p-5 sm:p-6">
               <p className="text-accent-text text-xs font-medium tracking-wide">
                 {project.category}
@@ -31,6 +39,16 @@ export function Projects() {
               <p className="text-text-secondary mt-3 text-sm leading-7 sm:text-base">
                 {project.summary}
               </p>
+              <dl className="mt-4 space-y-2 text-sm leading-6">
+                <div>
+                  <dt className="inline font-semibold">Role: </dt>
+                  <dd className="text-text-secondary inline">{project.role}</dd>
+                </div>
+                <div>
+                  <dt className="inline font-semibold">Delivered: </dt>
+                  <dd className="text-text-secondary inline">{project.outcome}</dd>
+                </div>
+              </dl>
               {"demoNote" in project ? (
                 <p className="border-border-soft bg-surface text-text-secondary mt-3 rounded-xl border p-3 text-xs leading-6">
                   {project.demoNote}
@@ -74,9 +92,10 @@ export function Projects() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-accent inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#c90812]"
-                  aria-label={`Open demo: ${project.title}`}
+                  aria-label={`${"demoNote" in project ? "View interface" : "Open demo"}: ${project.title}`}
                 >
-                  Open Demo <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                  {"demoNote" in project ? "View Interface" : "Open Demo"}{" "}
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <a
                   href={project.githubUrl}

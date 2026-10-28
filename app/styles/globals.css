@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --font-portfolio: "Times New Roman", Times, serif;
+  --font-portfolio: Arial, Helvetica, sans-serif;
   --background: #0b0b0b;
   --surface: #121212;
   --accent: #e50914;
@@ -23,8 +23,8 @@
   --color-border-soft: var(--border-soft);
   --animate-star-btn: star-btn calc(var(--duration) * 1s) linear infinite;
   --font-sans: var(--font-portfolio);
-  --font-serif: var(--font-portfolio);
-  --font-mono: var(--font-portfolio);
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
 }
 
 body {

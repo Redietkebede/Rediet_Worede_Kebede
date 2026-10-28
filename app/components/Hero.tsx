@@ -31,18 +31,18 @@ export function Hero() {
           </Lead>
           <div className="mt-6 flex flex-col gap-3 min-[400px]:flex-row min-[400px]:flex-wrap sm:mt-8">
             <Link
+              href="/#projects"
+              className={`${ctaBase} bg-accent font-semibold text-white hover:bg-[#c90812]`}
+            >
+              View Projects
+            </Link>
+            <Link
               href={profile.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${ctaBase} bg-accent font-semibold text-white hover:bg-[#c90812]`}
-            >
-              View Résumé
-            </Link>
-            <Link
-              href="/#contact"
               className={`${ctaBase} border-border-strong bg-surface text-text-primary hover:border-text-secondary border`}
             >
-              Let’s Collaborate
+              View Résumé
             </Link>
           </div>
           <p className="text-text-secondary mt-5 text-xs leading-6 sm:mt-7 sm:text-sm">

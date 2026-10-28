@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Text } from "@/components/ui";
+import { Button } from "@/components/ui";
 import { useRef, useState, type FormEvent } from "react";
 
 type FormValues = {
@@ -119,10 +119,6 @@ export function ContactForm() {
       noValidate
     >
       <h3 className="text-text-primary text-lg font-semibold">Send a Message</h3>
-      <Text className="mt-2">
-        Share an idea, a challenge, or where a technical perspective could help.
-      </Text>
-
       <input
         type="text"
         name="company"

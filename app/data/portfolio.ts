@@ -15,69 +15,33 @@ export const profile = {
 
 export const about = {
   bio: "I’m a full-stack developer based in Addis Ababa. I build web applications, connect existing AI models to useful product features, and turn data into dashboards people can use.",
-  focusAreas: [
-    "Responsive interfaces, clear application states, and usable navigation",
-    "AI features using existing models through OpenRouter, OpenAI, and Gemini",
-    "REST APIs, database design, authentication, and role-based access",
-    "Python and SQL pipelines that turn source data into useful dashboards",
-  ],
   philosophy:
     "I start with the workflow a person needs to complete, then connect the interface, business rules, and data behind it. I focus on predictable behavior, consistent information, and permissions that make each feature useful to the people who rely on it.",
 } as const;
 
 export const capabilities = [
   {
-    title: "Responsive interfaces",
-    description:
-      "Clear, accessible interfaces that adapt to different screens and make complex tasks easier to follow.",
+    title: "Full-stack applications",
+    description: "Usable interfaces backed by reliable application logic and data.",
     deliverables: [
-      "Forms, search, filters, and interactive views",
-      "Loading, empty, success, and error states",
+      "Responsive forms, search, and dashboards",
+      "APIs, authentication, and role-based access",
     ],
   },
   {
-    title: "Authentication & permissions",
-    description:
-      "Account and access features that connect each person with the information and actions relevant to them.",
+    title: "Practical AI integration",
+    description: "Existing AI models connected to useful product workflows.",
     deliverables: [
-      "Sign-in flows and protected application areas",
-      "Role-based access and permission checks",
-    ],
-  },
-  {
-    title: "APIs & integrations",
-    description:
-      "Connected systems that move information between interfaces, databases, and external services.",
-    deliverables: [
-      "REST endpoints and third-party integrations",
-      "Validation, business rules, and consistent responses",
-    ],
-  },
-  {
-    title: "Practical AI features",
-    description:
-      "Existing AI models connected to real application workflows, with useful input and structured results.",
-    deliverables: [
-      "Content generation and personalization",
+      "Question generation and personalized learning",
       "Model APIs connected to application data",
     ],
   },
   {
     title: "Data workflows & reporting",
-    description:
-      "Information collected, checked, and organized into views that are easier to explore and understand.",
+    description: "Source data organized into information people can explore and use.",
     deliverables: [
-      "Data ingestion, transformation, and validation",
-      "Charts, metrics, and interactive reporting",
-    ],
-  },
-  {
-    title: "Reliable application behavior",
-    description:
-      "Application logic that handles everyday workflows consistently and makes unexpected states easier to recover from.",
-    deliverables: [
-      "Workflow states, scheduling, and notifications",
-      "Debugging, data consistency, and performance improvements",
+      "Python and SQL pipelines with validation",
+      "Interactive charts, indicators, and reporting",
     ],
   },
 ] as const;
@@ -184,7 +148,7 @@ export const projects = [
   {
     title: "Financial & Economic Intelligence Dashboard",
     slug: "finance",
-    demoNote: "Live interface preview. Data views are currently unavailable.",
+    demoNote: "Interface preview only. Live data views are currently unavailable.",
     category: "Analytics · Data engineering",
     summary:
       "An interactive dashboard bringing economic indicators and market signals into one place.",

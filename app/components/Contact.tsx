@@ -7,8 +7,7 @@ export function Contact() {
     <Section
       id="contact"
       title="Let’s build something useful together"
-      description="Tell me about your goals, the people you’re building for, and the challenge you’d like to solve."
-      className="border-border-soft bg-surface/45 min-h-svh border-y"
+      className="border-border-soft bg-surface/45 border-y"
     >
       <Stagger
         className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)]"
@@ -16,7 +15,7 @@ export function Contact() {
         staggerChildren={0.12}
       >
         <StaggerItem className="min-w-0" duration={0.4} y={12}>
-          <h3 className="text-lg font-semibold">Start with the need</h3>
+          <h3 className="text-lg font-semibold">Get in touch</h3>
           <p className="text-text-secondary mt-3 text-sm leading-7">{profile.availability}</p>
           <a
             href={`mailto:${profile.email}`}
@@ -25,10 +24,6 @@ export function Contact() {
             {profile.email}
           </a>
           <p className="text-text-secondary mt-3 text-sm leading-7">Based in {profile.location}.</p>
-          <p className="text-text-secondary mt-4 text-sm leading-7">
-            Share your idea, a question, or a challenge your team is working through. Email works
-            too.
-          </p>
         </StaggerItem>
         <StaggerItem className="w-full min-w-0" duration={0.52} y={16}>
           <ContactForm />

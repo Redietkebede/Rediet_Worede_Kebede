@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { HoverGlowButton, StarButton } from "@/components/ui";
 import { useEffect, useRef, useState } from "react";
@@ -9,12 +10,13 @@ const navItems = [
   { label: "Capabilities", href: "/#services" },
   { label: "About", href: "/#about" },
   { label: "Experience", href: "/#experience" },
+  { label: "Technical Stack", href: "/#skills" },
   { label: "Contact", href: "/#contact" },
 ];
 
 function AnimatedDesktopNavLink({ href, label }: { href: string; label: string }) {
   return (
-    <a
+    <Link
       href={href}
       className="group text-text-secondary hover:text-text-primary focus-visible:text-text-primary relative inline-flex min-h-11 items-center text-sm font-medium transition-colors"
     >
@@ -33,7 +35,7 @@ function AnimatedDesktopNavLink({ href, label }: { href: string; label: string }
         aria-hidden="true"
         className="bg-accent pointer-events-none absolute bottom-1.5 left-0 h-px w-0 transition-all duration-300 group-hover:w-full group-focus-visible:w-full"
       />
-    </a>
+    </Link>
   );
 }
 
@@ -53,7 +55,7 @@ export function Navbar() {
       }
     };
     const handleResize = () => {
-      if (window.innerWidth >= 768) setOpen(false);
+      if (window.innerWidth >= 1024) setOpen(false);
     };
     document.addEventListener("pointerdown", handleOutside);
     document.addEventListener("keydown", handleEscape);
@@ -67,13 +69,13 @@ export function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-3 z-50 px-3 sm:px-6">
-      <div className="border-border-strong bg-background/65 flex items-center justify-between gap-3 rounded-full border px-3 py-2.5 backdrop-blur-xl sm:px-5">
+      <div className="border-border-strong bg-background/90 mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full border px-3 py-2.5 backdrop-blur-xl sm:px-5">
         <StarButton
           onClick={() => {
             setOpen(false);
             window.location.assign("/#hero");
           }}
-          aria-label="Rediet Worede Kebede — home"
+          aria-label="Rediet Worede Kebede, home"
           duration={2.8}
           lightWidth={72}
           lightColor="rgba(229, 9, 20, 0.85)"
@@ -83,7 +85,7 @@ export function Navbar() {
         >
           RWK
         </StarButton>
-        <nav aria-label="Main navigation" className="hidden items-center gap-4 md:flex lg:gap-7">
+        <nav aria-label="Main navigation" className="hidden items-center gap-5 lg:flex">
           {navItems.map((item) => (
             <AnimatedDesktopNavLink key={item.href} href={item.href} label={item.label} />
           ))}
@@ -109,7 +111,7 @@ export function Navbar() {
             aria-expanded={open}
             aria-controls="mobile-navigation"
             aria-label={open ? "Close menu" : "Open menu"}
-            className="border-border-strong bg-surface focus-visible:outline-accent-text inline-flex h-11 w-11 items-center justify-center rounded-full border focus-visible:outline-2 focus-visible:outline-offset-4 md:hidden"
+            className="border-border-strong bg-surface focus-visible:outline-accent-text inline-flex h-11 w-11 items-center justify-center rounded-full border focus-visible:outline-2 focus-visible:outline-offset-4 lg:hidden"
           >
             {open ? (
               <X className="h-5 w-5" aria-hidden="true" />
@@ -121,17 +123,17 @@ export function Navbar() {
             id="mobile-navigation"
             aria-label="Mobile navigation"
             hidden={!open}
-            className="border-border-strong bg-background absolute top-[calc(100%+1rem)] right-0 max-h-[calc(100svh-7rem)] w-56 max-w-[calc(100vw-2.5rem)] overflow-y-auto rounded-2xl border p-2 shadow-xl md:hidden"
+            className="border-border-strong bg-background absolute top-[calc(100%+1rem)] right-0 max-h-[calc(100svh-7rem)] w-56 max-w-[calc(100vw-2.5rem)] overflow-y-auto rounded-2xl border p-2 shadow-xl lg:hidden"
           >
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className="text-text-secondary hover:bg-surface flex min-h-11 items-center rounded-xl px-3 py-2 text-sm transition-colors hover:text-white"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>

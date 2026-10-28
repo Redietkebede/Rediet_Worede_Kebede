@@ -7,6 +7,7 @@ export function Skills() {
     <Section
       id="skills"
       title="Technical Stack"
+      className="border-border-soft border-t bg-[linear-gradient(to_bottom,var(--background),var(--surface)_25%,var(--surface)_75%,var(--background))]"
       description="The languages, frameworks, and tools I work with across interfaces, APIs, AI features, and data workflows."
     >
       <Stagger
@@ -16,7 +17,7 @@ export function Skills() {
       >
         {skillCategories.map((group) => (
           <StaggerItem key={group.category} duration={0.38} y={12}>
-            <article className="border-border-soft bg-surface/70 transform-gpu rounded-2xl border p-5 transition-transform duration-300 hover:-translate-y-0.5">
+            <article className="border-border-soft border-t pt-5">
               <h3 className="text-text-primary text-base font-semibold">{group.category}</h3>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {group.items.map((item) => (
